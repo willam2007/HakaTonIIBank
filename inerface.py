@@ -1,5 +1,5 @@
 import tkinter as tk
-
+#from create import *
 
 # Function to handle button click
 def on_button_click():
@@ -44,6 +44,7 @@ entry.grid(row=3, column=0, pady=20, sticky=tk.N)
 # Function to handle text processing
 def process_text():
     input_text = entry.get()
+    #ПРОЦЕдура
     # Here you can add code to process the input_text with your neural network
     result_process.config(text=f"Processed: {input_text}")
 
