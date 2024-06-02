@@ -4,6 +4,8 @@ pip install torch
 pip install git+https://github.com/openai/CLIP.git #
 pip install openpyxl
 pip install translate
+https://disk.yandex.ru/d/VyWC3ClSDyB2BQ - скачать ахрив, и разложить тут.
+Подгрузить все образы через requirements.txt
 
 
 ### Добро пожаловать на кейс ЦБ РФ "Генерация визуальной поддержки"!
