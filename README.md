@@ -7,6 +7,7 @@ pip install translate
 https://disk.yandex.ru/d/VyWC3ClSDyB2BQ - скачать ахрив, и разложить тут.
 Подгрузить все образы через requirements.txt
 
+Запускать программу через файл inerface semifinal.py
 
 ### Добро пожаловать на кейс ЦБ РФ "Генерация визуальной поддержки"!
 *** 
