@@ -3,7 +3,7 @@ pip install pandas
 pip install torch
 pip install git+https://github.com/openai/CLIP.git #
 pip install openpyxl
-
+pip install translate
 
 
 ### Добро пожаловать на кейс ЦБ РФ "Генерация визуальной поддержки"!
