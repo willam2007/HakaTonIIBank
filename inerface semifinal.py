@@ -7,11 +7,10 @@ root.title("IGKA")  # заголовок окна
 root.geometry("1250x800")  # установка размеров
 root.resizable(height=True, width=True)  # закрепление размеров
 
-# Configure the grid to have columns and multiple rows that expand
+# Столбы и строки страницы
 root.grid_columnconfigure(0, weight=1)
 root.grid_columnconfigure(1, weight=1)
 root.grid_columnconfigure(2, weight=1)
-#root.grid_columnconfigure(3, weight=1)
 root.grid_rowconfigure(0, weight=1)
 root.grid_rowconfigure(1, weight=1)
 root.grid_rowconfigure(2, weight=1)
@@ -93,7 +92,7 @@ entry_button.bind('<FocusIn>', on_button_click)
 
 # Текст над параметрами избражения
 checkbox_label = tk.Label(root, text="Выберите форматы, в которых необходимо получить изображение")
-checkbox_label.grid(row=3, column=0, pady=20, sticky=tk.NS)
+checkbox_label.grid(row=3, column=0, pady=20, sticky=tk.W, padx=100)
 
 # Элементы для чекбокса
 checkbox_vars = [tk.BooleanVar() for _ in range(7)]
@@ -111,58 +110,76 @@ dropdown_options_second = ["PNG", "JPG", "PDF"]
 dropdown_options_others = ["PNG", "JPG"]
 
 
-# Add label for color selection dropdown
+# Лейбл выбора цвета фона
 color_label = tk.Label(root, text="Выбор цвета фона")
-color_label.grid(row=6, column=0, pady=0, sticky=tk.E)
+color_label.grid(row=4, column=0, pady=0, sticky=tk.E)
 
 # Параметры для выпадающего меню с цветами
 color_options = ["Cиний", "Красный", "Оранжевый", "Серый", "Светло-голубой", "Светло-красный", "Светло-оранжевый", "Светло-серый"]
 
-# Create color dropdown menu
+# Создание выпадающего меню с цветами фона
 selected_color = tk.StringVar(root)
 selected_color.set(color_options[0])  # set default value
 color_dropdown = tk.OptionMenu(root, selected_color, *color_options)
 color_dropdown.grid(row=4, column=1, pady=2, sticky=tk.W, padx=0)
-############################################################################################
-# Add label for color selection dropdown
-colortext_label = tk.Label(root, text="Выбор цвета текста")
-colortext_label.grid(row=7, column=0, pady=0, sticky=tk.E)
 
-# Options for TextColor dropdown menu
+
+# Цвета
 colortext_options = ["Cиний", "Красный", "Оранжевый", "Серый", "Светло-голубой", "Светло-красный", "Светло-оранжевый", "Светло-серый"]
 
-# Create Textcolor dropdown menu
+# Лейбл выбора цвета заголовка
+colortext_label = tk.Label(root, text="Выбор цвета заголовка")
+colortext_label.grid(row=5, column=0, pady=0, sticky=tk.E)
+# создание выпадающего меню для цвета заголовка
 selected_colortext = tk.StringVar(root)
 selected_colortext.set(colortext_options[0])  # set default value
 colortext_dropdown = tk.OptionMenu(root, selected_colortext, *colortext_options)
-colortext_dropdown.grid(row=7, column=1, pady=2, sticky=tk.E, padx=0)
+colortext_dropdown.grid(row=5, column=1, pady=2, sticky=tk.W, padx = 0)
 
-# Create a list to store dropdown menus' StringVar and corresponding options list
+# Лейбл выбора цвета подзаголовка
+colorsubtitle_label = tk.Label(root, text="Выбор цвета подзаголовка")
+colorsubtitle_label.grid(row=6, column=0, pady=0, sticky=tk.E)
+# создание выпадающего меню для цвета подзаголовка
+selected_colorsubtitle = tk.StringVar(root)
+selected_colorsubtitle.set(colortext_options[0])  # set default value
+colorsubtitle_dropdown = tk.OptionMenu(root, selected_colorsubtitle, *colortext_options)
+colorsubtitle_dropdown.grid(row=6, column=1, pady=2, sticky=tk.W, padx = 0)
+
+# Лейбл выбора цвета кнопки
+colorbutton_label = tk.Label(root, text="Выбор цвета кнопки/инфо")
+colorbutton_label.grid(row=7, column=0, pady=0, sticky=tk.E)
+# создание выпадающего меню для цвета подзаголовка
+selected_colorbutton = tk.StringVar(root)
+selected_colorbutton.set(colortext_options[0])  # set default value
+colorbutton_dropdown = tk.OptionMenu(root, selected_colorbutton, *colortext_options)
+colorbutton_dropdown.grid(row=7, column=1, pady=2, sticky=tk.W, padx = 0)
+
+
 dropdown_vars = []
 dropdown_options_list = []
 
-# Create checkboxes and dropdown menus
+# создание чекбокса и меню выбора форматов
 for i, (var, label) in enumerate(zip(checkbox_vars, checkbox_labels), start=4):
     checkbox = tk.Checkbutton(root, text=label, variable=var, command=lambda: check_checkbox_state())
     checkbox.grid(row=i, column=0, pady=0, sticky=tk.W, padx=160)
 
-    # Create dropdown menu
+    # меню выбора форматов
     selected_option = tk.StringVar(root)
-    if i == 5:  # First dropdown menu
-        selected_option.set(dropdown_options_first[0])  # set default value
+    if i == 5: # с ПДФ
+        selected_option.set(dropdown_options_first[0]) 
         dropdown = tk.OptionMenu(root, selected_option, *dropdown_options_first)
         dropdown_options_list.append(dropdown_options_first)
-    elif i == 4:  # Second dropdown menu
-        selected_option.set(dropdown_options_second[0])  # set default value
+    elif i == 4:  # с ПДФ и ПП
+        selected_option.set(dropdown_options_second[0])  
         dropdown = tk.OptionMenu(root, selected_option, *dropdown_options_second)
         dropdown_options_list.append(dropdown_options_second)
-    else:  # Other dropdown menus
-        selected_option.set(dropdown_options_others[0])  # set default value
+    else:  # остальные(png,jpg)
+        selected_option.set(dropdown_options_others[0])  
         dropdown = tk.OptionMenu(root, selected_option, *dropdown_options_others)
         dropdown_options_list.append(dropdown_options_others)
     
     dropdown.grid(row=i, column=0, pady=5, sticky=tk.W, padx=80)
-    dropdown_vars.append(selected_option)  # Add the dropdown variable to the list
+    dropdown_vars.append(selected_option)
 
 def check_checkbox_state():
     if any(var.get() for var in checkbox_vars):
@@ -170,7 +187,7 @@ def check_checkbox_state():
     else:
         process_button.config(state=tk.DISABLED)
 
-# Function to handle text processing
+
 def process_text():
 
     zapros_text = entry_zapros.get() if entry_zapros.get() != default_texts["zapros"] else ""
@@ -188,9 +205,15 @@ def process_text():
         checkbox_values.append(f"{status}{format_index}")
     selected_color_index = color_options.index(selected_color.get()) + 1
     selected_colortext_index = colortext_options.index(selected_colortext.get()) + 1
-    print("Title: ", zapros_text, " " ,title_text)
+    selected_colorsubtitle_index = colortext_options.index(selected_colorsubtitle.get()) + 1
+    selected_colorbutton_index = colortext_options.index(selected_colorbutton.get()) + 1
+    print(" Заголовок: ", selected_colortext_index , 
+          " Подзаголовок: " ,selected_colorsubtitle_index, 
+          " Кнопка/инфо: "  ,selected_colorbutton_index)
+    result_process.config(text=f"Processed: {zapros_text}, Checkboxes: {checkbox_values}, Color: {selected_color_index}, Colortext: {selected_colortext_index}, Title: {title_text}, Subitle: {subtitle_text}, Button: {button_text}")
 
-    creation(zapros_text,checkbox_values,selected_color_index)
+
+    creation(zapros_text,checkbox_values,selected_color_index) 
 #####################
     font_path = "Montserrat-Bold.ttf"
     folder_path = "output/"
@@ -201,14 +224,14 @@ def process_text():
     adder.process_images_in_folder(folder_path, title_text, subtitle_text, button_text, colorshrift)
     result_process.config(text=f"Processed: {zapros_text}, Checkboxes: {checkbox_values}, Color: {selected_color_index}, Colortext: {selected_colortext_index}, Title: {title_text}, Subitle: {subtitle_text}, Button: {button_text}")
 
-# Create a process button
+# Создание "process button"
 process_button = tk.Button(root, text="Process Text", command=process_text, state=tk.DISABLED)
 process_button.grid(row=13, column=0, pady=20, sticky=tk.N)
 
 result_process = tk.Label(root, text="")
 result_process.grid(row=14, column=0, pady=20, sticky=tk.N)
 
-# Initial check to set the button state
+# Начальная проверка чекбоксов(чтоб кнопка без выбранного варианта не работала)
 check_checkbox_state()
 
 root.mainloop()
